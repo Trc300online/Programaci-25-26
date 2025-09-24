@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Programaci-25-26.iml" filepath="$PROJECT_DIR$/.idea/Programaci-25-26.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labs/examples/les14/dukeschoice/dukeschoice.iml" filepath="$PROJECT_DIR$/labs/examples/les14/dukeschoice/dukeschoice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labs/examples/examples.iml" filepath="$PROJECT_DIR$/labs/examples/examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labs/labs.iml" filepath="$PROJECT_DIR$/labs/labs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labs/examples/les14/soccer/soccer.iml" filepath="$PROJECT_DIR$/labs/examples/les14/soccer/soccer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/labs/soln/soln.iml" filepath="$PROJECT_DIR$/labs/soln/soln.iml" />
+    </modules>
+  </component>
+</project>
