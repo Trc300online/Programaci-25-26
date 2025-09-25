@@ -1,10 +1,10 @@
 public class TemperatureTest {
    
-  public static void main (String args[]) {
+  public static void main (String[] args) {
  
-  //Temperature myTemperature = new Temperature();
+  Temperature myTemperature = new Temperature();
   
-  //myTemperature.calculateCelsius();
+  myTemperature.calculateCelsius();
 
   } 
 }
