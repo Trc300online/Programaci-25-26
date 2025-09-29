@@ -13,6 +13,8 @@ public class CustomerTest {
         cust2.name = "Toni";
         cust2.emailAddress = "triera265@alumnes.politecnicllevant.cat";
 
+        //cust2 = cust1;
+
         cust1.displayCustomerInfo();
         System.out.println();
         cust2.displayCustomerInfo();
