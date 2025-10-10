@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        //integerOverflow();
-        //impSentece();
-        //act3();
+        integerOverflow();
+        impSentece();
+        act3();
         fahrenheitConvertor();
-
+        act5();
     }
 
 
@@ -55,5 +55,22 @@ public class Main {
         double fase1 = celsius * (9.00/5.00);
         fahrenheit = fase1 + 32;
         System.out.printf("%.4f%n", fahrenheit);
+    }
+
+    public static void act5() {
+        Scanner sNom = new Scanner(System.in);
+        System.out.println("nom: ");
+        String nom = sNom.nextLine();
+
+        Scanner sEdad = new Scanner(System.in);
+        System.out.println("edad: ");
+        byte edad = sEdad.nextByte();
+
+        Scanner sAltura = new Scanner(System.in);
+        System.out.println("altura: ");
+        double altura = sAltura.nextDouble();
+
+        System.out.println("nova edad: " + (edad + 2));
+        System.out.println("nova altura: " + altura / 2);
     }
 }
