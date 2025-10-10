@@ -10,6 +10,7 @@ public class Main {
         act5();
         act6();
         changeCounter();
+        undADocena();
     }
 
 
@@ -111,5 +112,18 @@ public class Main {
         dolars = (quarter * 0.25) + (dime * 0.10) + (nickel * 0.05) + (penny * 0.01);
 
         System.out.println("USA$" + dolars);
+    }
+
+    public static void undADocena() {
+        int valorDocena = 12;
+        int docena;
+        int unidades;
+        Scanner sValorUnidades = new Scanner(System.in);
+        System.out.println("Quantes unitats tens?");
+        int valorUnidades = sValorUnidades.nextInt();
+
+        docena = valorUnidades/valorDocena;
+        unidades = valorUnidades%valorDocena;
+        System.out.println("tens " + docena + " dotzenes i " + unidades + " unitats");
     }
 }
