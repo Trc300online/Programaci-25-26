@@ -9,6 +9,7 @@ public class Main {
         fahrenheitConvertor();
         act5();
         act6();
+        changeCounter();
     }
 
 
@@ -81,5 +82,34 @@ public class Main {
         String nom = sName.nextLine();
 
         System.out.println("Hola, "+ nom);
+    }
+
+    public static void changeCounter() {
+        double dolars;
+        int quarter;
+        int dime;
+        int nickel;
+        int penny;
+
+        System.out.println("insert your coins:");
+        Scanner sQuarter = new Scanner(System.in);
+        System.out.println("Quarters: ");
+        quarter = sQuarter.nextInt();
+
+        Scanner sDime = new Scanner(System.in);
+        System.out.println("Dimes: ");
+        dime = sDime.nextInt();
+
+        Scanner sNickel = new Scanner(System.in);
+        System.out.println("Nickels: ");
+        nickel = sNickel.nextInt();
+
+        Scanner sPenny = new Scanner(System.in);
+        System.out.println("Pennys: ");
+        penny = sPenny.nextInt();
+
+        dolars = (quarter * 0.25) + (dime * 0.10) + (nickel * 0.05) + (penny * 0.01);
+
+        System.out.println("USA$" + dolars);
     }
 }
