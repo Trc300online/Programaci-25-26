@@ -8,6 +8,7 @@ public class Main {
         act3();
         fahrenheitConvertor();
         act5();
+        act6();
     }
 
 
@@ -72,5 +73,13 @@ public class Main {
 
         System.out.println("nova edad: " + (edad + 2));
         System.out.println("nova altura: " + altura / 2);
+    }
+
+    public static void act6() {
+        Scanner sName = new Scanner(System.in);
+        System.out.println("nom: ");
+        String nom = sName.nextLine();
+
+        System.out.println("Hola, "+ nom);
     }
 }
