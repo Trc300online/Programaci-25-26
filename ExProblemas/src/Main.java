@@ -6,6 +6,7 @@ public class Main {
         integerOverflow();
         impSentece();
         act3();
+        fahrenheitConvertor();
 
     }
 
@@ -45,6 +46,14 @@ public class Main {
 
         int mod = (int) div%nEnter;
         System.out.println(mod);
+    }
 
+    public static void fahrenheitConvertor() {
+        double fahrenheit = 100;
+        double celsius;
+
+        double fase1 = fahrenheit -32;
+        celsius = fase1 * (5.00/9.00);
+        System.out.printf("%.4f%n", celsius);
     }
 }
