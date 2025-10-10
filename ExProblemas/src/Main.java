@@ -11,6 +11,7 @@ public class Main {
         act6();
         changeCounter();
         undADocena();
+        parabola();
     }
 
 
@@ -125,5 +126,19 @@ public class Main {
         docena = valorUnidades/valorDocena;
         unidades = valorUnidades%valorDocena;
         System.out.println("tens " + docena + " dotzenes i " + unidades + " unitats");
+    }
+
+    public static void parabola() {
+        double y;
+        int a = 2;
+        int b = 3;
+        int c = 4;
+
+        Scanner sX = new Scanner(System.in);
+        System.out.println("valor de x: ");
+        int x = sX.nextInt();
+
+        y = (a * Math.pow(x, 2)) + (b*x) + c; //Math.pow() para elevar, ^2 no tiene ese efecto en java
+        System.out.println(y);
     }
 }
