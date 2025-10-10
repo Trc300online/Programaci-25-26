@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        integerOverflow();
-        impSentece();
-        act3();
+        //integerOverflow();
+        //impSentece();
+        //act3();
         fahrenheitConvertor();
 
     }
@@ -49,11 +49,11 @@ public class Main {
     }
 
     public static void fahrenheitConvertor() {
-        double fahrenheit = 100;
-        double celsius;
+        double celsius = 25;
+        double fahrenheit;
 
-        double fase1 = fahrenheit -32;
-        celsius = fase1 * (5.00/9.00);
-        System.out.printf("%.4f%n", celsius);
+        double fase1 = celsius * (9.00/5.00);
+        fahrenheit = fase1 + 32;
+        System.out.printf("%.4f%n", fahrenheit);
     }
 }
