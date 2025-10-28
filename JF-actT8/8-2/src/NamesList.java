@@ -14,4 +14,16 @@ public class NamesList {
         System.out.println("Names list: " + listOfNames);
         System.out.println("Size of the list: " + listOfNames.size());
     }
+
+    public void manipulateList() {
+        listOfNames.remove("Miquel Veny");
+
+        System.out.println("New Names list: " + listOfNames);
+        System.out.println("Size of the list: " + listOfNames.size());
+
+        listOfNames.add(2,"Miquel Veny");
+
+        System.out.println("New Names list: " + listOfNames);
+        System.out.println("Size of the list: " + listOfNames.size());
+    }
 }
