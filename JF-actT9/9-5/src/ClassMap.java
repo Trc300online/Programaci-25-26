@@ -34,4 +34,24 @@ public class ClassMap {
             System.out.println();
         }
     }
+
+    public void searchDesk() {
+        boolean flag = false;
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 4; j++) {
+                if(deskArray[i][j] != null &&
+                        deskArray[i][j].equals(name)) {
+                    System.out.println(name + " sits at " + i + " , " + j);
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag == true) {
+                break;
+            }
+        }
+        if(flag == false) {
+            System.out.println("Error: name not found");
+        }
+    }
 }
