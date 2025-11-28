@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        int[] nums = {1, 3, 2, 3, 4, 4, 5};
+        int[] nums = {2, 54, 3, 9, 15, 0, 94, 8, 455};
         System.out.println(mitjana(nums));
         System.out.println();
         System.out.println(valorMin(nums));
@@ -20,6 +20,11 @@ public class Main {
         System.out.println(Arrays.toString(reverseArray(nums)));    //reverseArray(nums); also works
         System.out.println();
         System.out.println(searchIndex(nums, 10));
+        System.out.println();
+        System.out.println(closeToMitjana(nums));
+        System.out.println();
+        System.out.println(Arrays.toString(nums));
+        System.out.println(Arrays.toString(swapArray(nums, 4)));
 
     }
 
@@ -119,6 +124,43 @@ public class Main {
         return index;
     }
 
-    // TODO: act 10, act 11, act 12.
+    public static double closeToMitjana(int[] valors){
+        double valorMitjana = mitjana(valors);
+        int valorProper = valors[0];
+        double distMin = Math.abs(valors[0] - valorMitjana);
+
+        for (int i = 0; i < valors.length; i++) {
+            double distAct = Math.abs(valors[i] - valorMitjana);
+            if (distAct < distMin) {
+                distMin = distAct;
+                valorProper = valors[i];
+            }
+        }
+
+        return valorProper;
+    }
+
+    public static int[] swapArray(int[] valors, int pos) {
+        int max = valors[pos];
+        int indexMax = pos;
+        if (pos <= valors.length){
+            for (int i = 0; i <= pos; i++){
+                if (valors[i] > max) {
+                    max = valors[i];
+                    indexMax = i;
+                }
+            }
+            int temp = valors[pos];
+            valors[pos] = valors[indexMax];
+            valors[indexMax] = temp;
+        } else {
+            System.out.println("posicio fora de la matriu");
+        }
+
+        return valors;
+    }
+
+    public
+    // TODO: act 12.
 
 }
