@@ -25,6 +25,9 @@ public class Main {
         System.out.println();
         System.out.println(Arrays.toString(nums));
         System.out.println(Arrays.toString(swapArray(nums, 4)));
+        System.out.println();
+        System.out.println(Arrays.toString(nums));
+        System.out.println(Arrays.toString(sortSwap(nums)));
 
     }
 
@@ -160,7 +163,12 @@ public class Main {
         return valors;
     }
 
-    public
-    // TODO: act 12.
+    public static int[] sortSwap(int[] valors) {
+        int[] sorted = valors;
+        for (int i = valors.length -1; i > 0; i--) {
+             sorted = swapArray(sorted, i);
+        }
 
+        return sorted;
+    }
 }
