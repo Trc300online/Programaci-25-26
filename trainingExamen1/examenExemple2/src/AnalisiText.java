@@ -125,5 +125,5 @@ public class AnalisiText {
 
         return counter;
     }
-    // TODO: act 7-16.
+    // TODO: act 10-16.
 }
