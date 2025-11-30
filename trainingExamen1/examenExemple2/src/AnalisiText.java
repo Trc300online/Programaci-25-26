@@ -8,9 +8,15 @@ public class AnalisiText {
         System.out.println();
         System.out.println(checkDelimitators(x, delimitadors, 3));
         System.out.println();
-        System.out.println(checkStartWord(x, 15));
+        System.out.println(checkStartWord(x, delimitadors,15));
         System.out.println();
         System.out.println(checkLength(x, delimitadors, 10));
+        System.out.println();
+        System.out.println(returnWord(x, delimitadors, 4));
+        System.out.println();
+        System.out.println(palindrom("anna"));
+        System.out.println();
+        System.out.println(countPalindrom(x, delimitadors));
 
     }
 
@@ -47,15 +53,20 @@ public class AnalisiText {
         return isDelim;
     }
 
-    public static boolean checkStartWord(char[] text, int pos) {
-        char space = ' ';
+    public static boolean checkStartWord(char[] text, char[] delim, int pos) {
         boolean isStart = false;
         if (pos < 0 || pos > text.length - 1) {
             System.out.println("posició fora del text, resultat indiferent");
             return false;
         } else {
-            if (pos == 0 || text[pos -1] == space) {
+            if (pos == 0) {
                 isStart = true;
+            } else {
+                for (int i = 0; i < delim.length; i++) {
+                    if (text[pos -1] == delim[i]) {
+                        isStart = true;
+                    }
+                }
             }
         }
         return isStart;
@@ -68,7 +79,7 @@ public class AnalisiText {
             length = -1;
             return length;
         } else {
-            while (!checkDelimitators(text, delim, pos)){
+            while (pos < text.length && !checkDelimitators(text, delim, pos)){
                 length++;
                 pos++;
             }
@@ -76,5 +87,43 @@ public class AnalisiText {
         }
     }
 
+    public static String returnWord(char[] text, char[] delim, int pos) {
+        String word = "";
+        if (checkStartWord(text, delim, pos)) {
+            for (int i = 0; i < checkLength(text, delim, pos); i++) {
+                word += text[pos + i];
+            }
+        } else {
+            System.out.println("la posició indicada no es inici de paraula");
+        }
+
+        return word;
+    }
+
+    public static boolean palindrom(String word) {
+        boolean esPalindrom = true;
+        char[] wordToChar = stringToCharArray(word);
+        for (int i = 0; i < wordToChar.length/2; i++) {
+            if (wordToChar[i] != wordToChar[wordToChar.length -1 - i]) {
+                esPalindrom = false;
+                break;
+            }
+        }
+        return esPalindrom;
+    }
+
+    public static int countPalindrom(char[] text, char[] delim) {
+        int counter = 0;
+        for (int i = 0; i < text.length; i++) {
+            if (checkStartWord(text, delim, i)) {
+                String word = returnWord(text, delim, i);
+                if (word.length() > 1 && palindrom(word)){
+                    counter++;
+                }
+            }
+        }
+
+        return counter;
+    }
     // TODO: act 7-16.
 }
