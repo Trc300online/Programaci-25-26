@@ -13,8 +13,8 @@ public class Editor extends SkilledEmployee{
         }
     }
 
-    public void displayInformation() {
-        super.displayInformation();
+    public void print() {
+        super.print();
         System.out.println("This editor prefers to edit on " + this.getEditingPreference());
     }
 }

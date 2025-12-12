@@ -1,4 +1,4 @@
-public class Employee {
+public class Employee implements Printable {
     protected static int employeeIDCounter = 0;
     private String name;
     private String jobTitle;
@@ -42,7 +42,7 @@ public class Employee {
         setEmployeeId(employeeIDCounter);
     }
 
-    public void displayInformation() {
+    public void print() {
         System.out.println("Name: " + getName());
         System.out.println("Job Title: " + getJobTitle());
         System.out.println("Employee ID: " + getEmployeeId());

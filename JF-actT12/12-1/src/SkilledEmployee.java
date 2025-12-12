@@ -10,8 +10,9 @@ public class SkilledEmployee extends Employee{
     public ArrayList getSkillList() {
         return skillList;
     }
-    public void displayInformation() {
-        super.displayInformation();
+
+    public void print() {
+        super.print();
         System.out.println("Employee has the following skils:");
 
         for (int i = 0; i < skillList.size(); i++) {

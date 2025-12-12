@@ -12,9 +12,9 @@ public class Manager extends Employee{
         return employeeList;
     }
 
-    public void displayInformation() {
+    public void print() {
         Employee emp;
-        super.displayInformation();
+        super.print();
         System.out.println("Manager has the following employees:");
 
         for (Object obj : employeeList) {
