@@ -11,7 +11,9 @@ public class Main {
                                         {5, 4, 0, 0, 0, 1, 2, 3, 4},
                                         {3, 2, 2, 4, 4, 5, 1, 1, 3}};
 
-        calcularDistr_partits(disticte_electorVots, P, Distr);
+        int[][] dist_part =calcularDistr_partits(disticte_electorVots, P, Distr);
+
+        analitzResult(esconsPerDistricte, dist_part);
 
     }
 
@@ -40,8 +42,48 @@ public class Main {
 
     }
 
-    public static void analitzResult() {
-        
+    public static void analitzResult(int[] esconsPerDistricte, int[][] dist_part) {
+        int[][] analitzat = new int[dist_part.length][dist_part[0].length];
+        int max = 0;
+
+
+        for (int i = 0; i < dist_part.length; i++) {
+            int iMax = -1;
+            int jMax = -1;
+
+            while (esconsPerDistricte[i] != 0) {
+                for (int j = 1; j < dist_part[i].length; j++) {
+                    if (dist_part[i][j] < dist_part[i][j-1]) {
+                        iMax = i;
+                        jMax = j -1;
+                    }
+                }
+                analitzat[iMax][jMax]++;
+                dist_part[iMax][jMax] = 0;
+
+                esconsPerDistricte[i]--;
+            }
+
+        }
+        System.out.println();
+        System.out.println();
+
+        System.out.print("analisis");
+        for (int i = 0; i < esconsPerDistricte.length; i++) {
+            System.out.println();
+            for (int a = 0; a < analitzat[0].length; a++) {
+                System.out.print(analitzat[i][a] + ", ");
+            }
+        }
+
+        System.out.println();
+        for (int i = 0; i < esconsPerDistricte.length; i++) {
+            System.out.println();
+            for (int j = 0; j < analitzat[0].length; j++) {
+                System.out.print(dist_part[i][j] + ", ");
+            }
+        }
+
     }
 }
 
