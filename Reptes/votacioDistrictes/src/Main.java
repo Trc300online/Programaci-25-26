@@ -22,9 +22,7 @@ public class Main {
 
         for (int i = 0; i < disticte_electorVots.length; i++){
             for (int j = 0; j < disticte_electorVots[i].length; j++){
-                if (disticte_electorVots[i][j] <= 0) {
-                    dist_part[0][0] += 0;
-                } else {
+                if (disticte_electorVots[i][j] > 0) {
                     dist_part[i][disticte_electorVots[i][j] -1] += 1;
                 }
             }
@@ -56,27 +54,23 @@ public class Main {
 
 
         for (int i = 0; i < dist_partCopy.length; i++) {
-            int iMax = -1;
-            int jMax = -1;
             int maxValue = 0;
 
-            while (esconsPerDistricte[i] != 0) {
+            while (esconsPerDistricte[i] > 0) {
                 for (int j = 0; j < dist_part[i].length; j++) {
                     if (dist_partCopy[i][j] > maxValue) {
                         maxValue = dist_partCopy[i][j];
-
-                    }
-
-                    if (j == dist_partCopy.length-1) {
-                        for (int k = 0; k < dist_part[i].length; k++) {
-                            
-                        }
                     }
                 }
-                analitzat[iMax][jMax]++;
-                dist_partCopy[iMax][jMax] = 0;
+                int count = esconsPerDistricte[i];
+                for (int k = 0; k < dist_part[i].length; k++) {
+                    if ((dist_partCopy[i][k] == maxValue) && (count > 0)) {
+                        analitzat[i][k]++;
+                        esconsPerDistricte[i]--;
+                        count--;
+                    }
 
-                esconsPerDistricte[i]--;
+                }
             }
 
         }
