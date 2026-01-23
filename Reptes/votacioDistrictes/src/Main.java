@@ -44,22 +44,37 @@ public class Main {
 
     public static void analitzResult(int[] esconsPerDistricte, int[][] dist_part) {
         int[][] analitzat = new int[dist_part.length][dist_part[0].length];
+        int [][] dist_partCopy = new int[dist_part.length][dist_part[0].length];
         int max = 0;
 
-
         for (int i = 0; i < dist_part.length; i++) {
+            for (int j = 0; j < dist_part[0].length; j++) {
+                int temp = dist_part[i][j];
+                dist_partCopy[i][j] = temp;
+            }
+        }
+
+
+        for (int i = 0; i < dist_partCopy.length; i++) {
             int iMax = -1;
             int jMax = -1;
+            int maxValue = 0;
 
             while (esconsPerDistricte[i] != 0) {
-                for (int j = 1; j < dist_part[i].length; j++) {
-                    if (dist_part[i][j] < dist_part[i][j-1]) {
-                        iMax = i;
-                        jMax = j -1;
+                for (int j = 0; j < dist_part[i].length; j++) {
+                    if (dist_partCopy[i][j] > maxValue) {
+                        maxValue = dist_partCopy[i][j];
+
+                    }
+
+                    if (j == dist_partCopy.length-1) {
+                        for (int k = 0; k < dist_part[i].length; k++) {
+                            
+                        }
                     }
                 }
                 analitzat[iMax][jMax]++;
-                dist_part[iMax][jMax] = 0;
+                dist_partCopy[iMax][jMax] = 0;
 
                 esconsPerDistricte[i]--;
             }
@@ -75,15 +90,6 @@ public class Main {
                 System.out.print(analitzat[i][a] + ", ");
             }
         }
-
-        System.out.println();
-        for (int i = 0; i < esconsPerDistricte.length; i++) {
-            System.out.println();
-            for (int j = 0; j < analitzat[0].length; j++) {
-                System.out.print(dist_part[i][j] + ", ");
-            }
-        }
-
     }
 }
 
