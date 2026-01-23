@@ -11,9 +11,23 @@ public class Main {
                                         {5, 4, 0, 0, 0, 1, 2, 3, 4},
                                         {3, 2, 2, 4, 4, 5, 1, 1, 3}};
 
+        System.out.print("vots dels districtes:");
+        printBiArray(disticte_electorVots);
+
         int[][] dist_part =calcularDistr_partits(disticte_electorVots, P, Distr);
 
-        analitzResult(esconsPerDistricte, dist_part);
+        System.out.print("quin partit han votat a cada districte");
+        printBiArray(dist_part);
+
+        int[][] analitzat = analitzResult(esconsPerDistricte, dist_part);
+
+        System.out.print("analisis/sintetització dels vots");
+        printBiArray(analitzat);
+
+        int[] recount = recount(analitzat, P);
+
+        System.out.print("resultats de les votacions");
+        printArray(recount);
 
     }
 
@@ -27,23 +41,13 @@ public class Main {
                 }
             }
         }
-
-        System.out.print("calcular una matriu districtes / partits\n");
-        for (int i = 0; i < Distr; i++) {
-            System.out.println();
-            for (int j = 0; j < P; j++) {
-                System.out.print(dist_part[i][j] + ", ");
-            }
-        }
-
         return dist_part;
 
     }
 
-    public static void analitzResult(int[] esconsPerDistricte, int[][] dist_part) {
+    public static int[][] analitzResult(int[] esconsPerDistricte, int[][] dist_part) {
         int[][] analitzat = new int[dist_part.length][dist_part[0].length];
         int [][] dist_partCopy = new int[dist_part.length][dist_part[0].length];
-        int max = 0;
 
         for (int i = 0; i < dist_part.length; i++) {
             for (int j = 0; j < dist_part[0].length; j++) {
@@ -69,22 +73,41 @@ public class Main {
                         esconsPerDistricte[i]--;
                         count--;
                     }
-
                 }
             }
-
         }
-        System.out.println();
-        System.out.println();
+        return analitzat;
+    }
 
-        System.out.print("analisis");
-        for (int i = 0; i < esconsPerDistricte.length; i++) {
-            System.out.println();
-            for (int a = 0; a < analitzat[0].length; a++) {
-                System.out.print(analitzat[i][a] + ", ");
+    public static int[] recount(int[][] analitzat, int P) {
+        int[] recount = new int[P];
+
+        for (int i = 0; i < analitzat.length; i++) {
+            for (int j = 0; j < analitzat[i].length; j++) {
+                recount[i] += analitzat[i][j];
             }
         }
+        return recount;
     }
+
+    public static void printBiArray(int[][] biArray) {
+        for (int i = 0; i < biArray.length; i++) {
+            System.out.println();
+            for (int a = 0; a < biArray[0].length; a++) {
+                System.out.print(biArray[i][a] + ", ");
+            }
+        }
+        System.out.println();
+        System.out.println();
+    }
+
+    public static void printArray(int[] array) {
+        System.out.println();
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + ", ");
+        }
+    }
+
 }
 
 
