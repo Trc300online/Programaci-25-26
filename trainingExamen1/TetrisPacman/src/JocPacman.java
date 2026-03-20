@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class JocPacman {
 
@@ -7,6 +8,7 @@ public class JocPacman {
     int pacmanX;
     int pacmanY;
     List<int[]> ghosts = new ArrayList<>();
+    int totalPunts;
 
     public JocPacman(char[][] taulerInicial) {
         this.tauler = new char[taulerInicial.length][taulerInicial[0].length];
@@ -21,6 +23,14 @@ public class JocPacman {
                     tauler[i][j] = '.';
                 } else {
                     tauler[i][j] = taulerInicial[i][j];
+                }
+            }
+        }
+
+        for (int i = 0; i < tauler.length; i++) {
+            for (int j = 0; j < tauler[0].length; j++) {
+                if (tauler[i][j] == '.') {
+                    totalPunts++;
                 }
             }
         }
@@ -54,12 +64,132 @@ public class JocPacman {
 
     public void jugar() {
 
-        while (true) {
+        boolean gameContinue = true;
+
+        while (gameContinue) {
             printTauler();
             pacmanMove();
-            checkPos();
+            gameContinue = checkPos();
+            if (totalPunts <= 0) {
+                gameContinue = false;
+                System.out.println("You Win!!!");
+            }
             ghostsMove();
-            checkPos();
+            gameContinue = checkPos();
         }
+    }
+
+    public void pacmanMove() {
+        Scanner input = new Scanner(System.in);
+        char dir = input.next().charAt(0);
+
+        switch (dir) {
+            case 'w':
+                if (tauler[pacmanX--][pacmanY] != '#') {
+                    pacmanX--;
+                    tauler[pacmanX--][pacmanY] = ' ';
+                    totalPunts--;
+                    break;
+                } else {
+                    System.out.println("Moviment invalid, tria un altra moviment");
+                    pacmanMove();
+                }
+            case 'a':
+                if (tauler[pacmanX][pacmanY--] != '#') {
+                    pacmanY--;
+                    tauler[pacmanX][pacmanY--] = ' ';
+                    totalPunts--;
+                    break;
+                } else {
+                    System.out.println("Moviment invalid, tria un altra moviment");
+                    pacmanMove();
+                }
+            case 's':
+                if (tauler[pacmanX++][pacmanY] != '#') {
+                    pacmanX++;
+                    tauler[pacmanX++][pacmanY] = ' ';
+                    totalPunts--;
+                    break;
+                } else {
+                    System.out.println("Moviment invalid, tria un altra moviment");
+                    pacmanMove();
+                }
+            case 'd':
+                if (tauler[pacmanX][pacmanY++] != '#') {
+                    pacmanY++;
+                    tauler[pacmanX][pacmanY++] = ' ';
+                    totalPunts--;
+                    break;
+                } else {
+                    System.out.println("Moviment invalid, tria un altra moviment");
+                    pacmanMove();
+                }
+            default:
+                System.out.println("tecla invalida, tira un atra vegada");
+                pacmanMove();
+        }
+    }
+
+    public void ghostsMove() {
+        for (int[] ghost : ghosts) {
+            ghost = checkMove(ghost[0], ghost[1]);
+        }
+    }
+
+    public int[] checkMove(int i, int j) {
+        int dir = (int) ((Math.random() * 4) + 1);
+        int[] ghostNext = new int[2];
+
+        switch (dir) {
+            case 1:
+                if (tauler[i--][j] != '#') {
+                    ghostNext[0] = i--;
+                    ghostNext[1] = j;
+                    return ghostNext;
+                } else {
+                    checkMove(i, j);
+                }
+            case 2:
+                if (tauler[i][j--] != '#') {
+                    ghostNext[0] = i;
+                    ghostNext[1] = j--;
+                    return ghostNext;
+                } else {
+                    checkMove(i, j);
+                }
+            case 3:
+                if (tauler[i++][j] != '#') {
+                    ghostNext[0] = i++;
+                    ghostNext[1] = j;
+                    return ghostNext;
+                } else {
+                    checkMove(i, j);
+                }
+            case 4:
+                if (tauler[i][j++] != '#') {
+                    ghostNext[0] = i;
+                    ghostNext[1] = j++;
+                    return ghostNext;
+                } else {
+                    checkMove(i, j);
+                }
+            default:
+                ghostNext[0] = i;
+                ghostNext[1] = j;
+                return ghostNext;
+        }
+    }
+
+    public boolean checkPos() {
+        boolean pacmanAlive = true;
+
+        for (int[] ghost : ghosts) {
+            if (ghost[0] == pacmanX && ghost[1] == pacmanY) {
+                pacmanAlive = false;
+                System.out.println("Game Over!!!");
+            }
+        }
+
+        return pacmanAlive;
     }
 }
