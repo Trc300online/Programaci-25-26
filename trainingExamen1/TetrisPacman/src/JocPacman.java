@@ -85,48 +85,61 @@ public class JocPacman {
 
         switch (dir) {
             case 'w':
-                if (tauler[pacmanX--][pacmanY] != '#') {
-                    pacmanX--;
-                    tauler[pacmanX--][pacmanY] = ' ';
-                    totalPunts--;
+                if (tauler[pacmanX - 1][pacmanY] != '#') {
+                    --pacmanX;
+                    if (tauler[pacmanX] [pacmanY] == '.') {
+                        tauler[pacmanX][pacmanY] = ' ';
+                        totalPunts--;
+                    }
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
-                    pacmanMove();
+                    //pacmanMove();
+                    jugar();
                 }
             case 'a':
-                if (tauler[pacmanX][pacmanY--] != '#') {
-                    pacmanY--;
-                    tauler[pacmanX][pacmanY--] = ' ';
-                    totalPunts--;
+                if (tauler[pacmanX][pacmanY - 1] != '#') {
+                    --pacmanY;
+                    if (tauler[pacmanX] [pacmanY] == '.') {
+                        tauler[pacmanX][pacmanY] = ' ';
+                        totalPunts--;
+                    }
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
-                    pacmanMove();
+                    //pacmanMove();
+                    jugar();
                 }
             case 's':
-                if (tauler[pacmanX++][pacmanY] != '#') {
-                    pacmanX++;
-                    tauler[pacmanX++][pacmanY] = ' ';
-                    totalPunts--;
+                if (tauler[pacmanX + 1][pacmanY] != '#') {
+                    ++pacmanX;
+                    if (tauler[pacmanX] [pacmanY] == '.') {
+                        tauler[pacmanX][pacmanY] = ' ';
+                        totalPunts--;
+                    }
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
-                    pacmanMove();
+                    //pacmanMove();
+                    jugar();
                 }
             case 'd':
-                if (tauler[pacmanX][pacmanY++] != '#') {
-                    pacmanY++;
-                    tauler[pacmanX][pacmanY++] = ' ';
-                    totalPunts--;
+                if (tauler[pacmanX][pacmanY + 1] != '#') {
+                    ++pacmanY;
+                    if (tauler[pacmanX] [pacmanY] == '.') {
+                        tauler[pacmanX][pacmanY] = ' ';
+                        totalPunts--;
+                    }
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
-                    pacmanMove();
+                    //pacmanMove();
+                    jugar();
                 }
             default:
                 System.out.println("tecla invalida, tira un atra vegada");
-                pacmanMove();
+                //pacmanMove();
+                jugar();
         }
     }
 
