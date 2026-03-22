@@ -142,7 +142,7 @@ public class JocPacman {
                 jugar();
         }
     }
-
+            // TODO: fix ghost not moveing (how to modify ghosts[0] --> int[i, j])
     public void ghostsMove() {
         for (int[] ghost : ghosts) {
             ghost = checkMove(ghost[0], ghost[1]);
