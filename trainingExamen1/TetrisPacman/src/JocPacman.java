@@ -69,13 +69,17 @@ public class JocPacman {
         while (gameContinue) {
             printTauler();
             pacmanMove();
-            gameContinue = checkPos();
+            if (!checkPos()) {
+                gameContinue = false;
+            }
             if (totalPunts <= 0) {
                 gameContinue = false;
                 System.out.println("You Win!!!");
             }
             ghostsMove();
-            gameContinue = checkPos();
+            if (!checkPos()) {
+                gameContinue = false;
+            }
         }
     }
 
@@ -87,10 +91,7 @@ public class JocPacman {
             case 'w':
                 if (tauler[pacmanX - 1][pacmanY] != '#') {
                     --pacmanX;
-                    if (tauler[pacmanX] [pacmanY] == '.') {
-                        tauler[pacmanX][pacmanY] = ' ';
-                        totalPunts--;
-                    }
+                    calcPoints(pacmanX, pacmanY);
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
@@ -100,10 +101,7 @@ public class JocPacman {
             case 'a':
                 if (tauler[pacmanX][pacmanY - 1] != '#') {
                     --pacmanY;
-                    if (tauler[pacmanX] [pacmanY] == '.') {
-                        tauler[pacmanX][pacmanY] = ' ';
-                        totalPunts--;
-                    }
+                    calcPoints(pacmanX, pacmanY);
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
@@ -113,10 +111,7 @@ public class JocPacman {
             case 's':
                 if (tauler[pacmanX + 1][pacmanY] != '#') {
                     ++pacmanX;
-                    if (tauler[pacmanX] [pacmanY] == '.') {
-                        tauler[pacmanX][pacmanY] = ' ';
-                        totalPunts--;
-                    }
+                    calcPoints(pacmanX, pacmanY);
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
@@ -126,10 +121,7 @@ public class JocPacman {
             case 'd':
                 if (tauler[pacmanX][pacmanY + 1] != '#') {
                     ++pacmanY;
-                    if (tauler[pacmanX] [pacmanY] == '.') {
-                        tauler[pacmanX][pacmanY] = ' ';
-                        totalPunts--;
-                    }
+                    calcPoints(pacmanX, pacmanY);
                     break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
@@ -142,10 +134,11 @@ public class JocPacman {
                 jugar();
         }
     }
-            // TODO: fix ghost not moveing (how to modify ghosts[0] --> int[i, j])
+
     public void ghostsMove() {
+        int count = 0;
         for (int[] ghost : ghosts) {
-            ghost = checkMove(ghost[0], ghost[1]);
+            ghosts.set(count, checkMove(ghost[0], ghost[1]));
         }
     }
 
@@ -155,33 +148,33 @@ public class JocPacman {
 
         switch (dir) {
             case 1:
-                if (tauler[i--][j] != '#') {
-                    ghostNext[0] = i--;
+                if (tauler[i - 1][j] != '#') {
+                    ghostNext[0] = --i;
                     ghostNext[1] = j;
                     return ghostNext;
                 } else {
                     checkMove(i, j);
                 }
             case 2:
-                if (tauler[i][j--] != '#') {
+                if (tauler[i][j - 1] != '#') {
                     ghostNext[0] = i;
-                    ghostNext[1] = j--;
+                    ghostNext[1] = --j;
                     return ghostNext;
                 } else {
                     checkMove(i, j);
                 }
             case 3:
-                if (tauler[i++][j] != '#') {
-                    ghostNext[0] = i++;
+                if (tauler[i + 1][j] != '#') {
+                    ghostNext[0] = ++i;
                     ghostNext[1] = j;
                     return ghostNext;
                 } else {
                     checkMove(i, j);
                 }
             case 4:
-                if (tauler[i][j++] != '#') {
+                if (tauler[i][j + 1] != '#') {
                     ghostNext[0] = i;
-                    ghostNext[1] = j++;
+                    ghostNext[1] = ++j;
                     return ghostNext;
                 } else {
                     checkMove(i, j);
@@ -204,5 +197,12 @@ public class JocPacman {
         }
 
         return pacmanAlive;
+    }
+
+    public void calcPoints(int i, int j) {
+        if (tauler[i][j] == '.') {
+            tauler[i][j] = ' ';
+            totalPunts--;
+        }
     }
 }
