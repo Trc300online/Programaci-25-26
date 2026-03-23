@@ -9,6 +9,11 @@ public class JocPacman {
     int pacmanY;
     List<int[]> ghosts = new ArrayList<>();
     int totalPunts;
+    int[][] direccions = {{0,1},{0,-1},{1,0},{-1,0}};
+    private final int eixX = 0;     // Miquel
+    private final int eixY = 1;     // Miquel
+
+    // direccions[0][eixX]          // Miquel
 
     public JocPacman(char[][] taulerInicial) {
         this.tauler = new char[taulerInicial.length][taulerInicial[0].length];
@@ -83,6 +88,14 @@ public class JocPacman {
         }
     }
 
+    public int demanaMovimenPacman(){       // Miquel
+        int dir = 0 ;
+
+        ///  codi per demanar a usuari
+
+        return dir;
+    }
+
     public void pacmanMove() {
         Scanner input = new Scanner(System.in);
         char dir = input.next().charAt(0);
@@ -92,42 +105,42 @@ public class JocPacman {
                 if (tauler[pacmanX - 1][pacmanY] != '#') {
                     --pacmanX;
                     calcPoints(pacmanX, pacmanY);
-                    break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
                     //pacmanMove();
                     jugar();
                 }
+                break;
             case 'a':
                 if (tauler[pacmanX][pacmanY - 1] != '#') {
                     --pacmanY;
                     calcPoints(pacmanX, pacmanY);
-                    break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
                     //pacmanMove();
                     jugar();
                 }
+                break;
             case 's':
                 if (tauler[pacmanX + 1][pacmanY] != '#') {
                     ++pacmanX;
                     calcPoints(pacmanX, pacmanY);
-                    break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
                     //pacmanMove();
                     jugar();
                 }
+                break;
             case 'd':
                 if (tauler[pacmanX][pacmanY + 1] != '#') {
                     ++pacmanY;
                     calcPoints(pacmanX, pacmanY);
-                    break;
                 } else {
                     System.out.println("Moviment invalid, tria un altra moviment");
                     //pacmanMove();
                     jugar();
                 }
+                break;
             default:
                 System.out.println("tecla invalida, tira un atra vegada");
                 //pacmanMove();
